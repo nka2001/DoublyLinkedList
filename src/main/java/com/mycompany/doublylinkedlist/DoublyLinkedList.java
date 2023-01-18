@@ -7,6 +7,13 @@ package com.mycompany.doublylinkedlist;
 public class DoublyLinkedList {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        DoublyLinkedListDS<String> dll = new DoublyLinkedListDS<>();
+        
+        dll.append("Test 1");
+        dll.append("Test 2");
+        
+        System.out.println(dll.toString());
+        
+        
     }
 }
