@@ -42,6 +42,23 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
 
     }
 
+    /**
+     * prepend method will add a node at the beginning of the list
+     * @param addMe 
+     */
+    public void prepend(T addMe){
+        
+        Node<T> addFront = new Node<>();//create a new node
+        addFront.data = addMe;//set the data in the node
+        addFront.next = dummy.next;//make the next of the new node point to the current head of the list
+        dummy.next.prev = addFront;//set the heads previous to point to the new node
+        dummy.next = addFront;//set the dummys next to the new node
+        n++;//increment the number of nodes
+        
+    }
+    
+    
+    
     @Override
     public String toString() {
 

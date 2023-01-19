@@ -11,8 +11,10 @@ public class DoublyLinkedList {
         
         dll.append("Test 1");
         dll.append("Test 2");
+        dll.prepend("Test 3");
+       
         
-        System.out.println(dll.toString());
+        System.out.println(dll.toString());//test 3 should come first
         
         
     }
