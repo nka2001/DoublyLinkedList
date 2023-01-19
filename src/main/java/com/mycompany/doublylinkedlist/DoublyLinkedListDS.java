@@ -13,14 +13,14 @@ import java.util.NoSuchElementException;
 public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> {
 
     private int n; //number of elements
-    private Node dummy;//dummy node is used to stop adding and removing issues, dummy never gets removed
+    private Node<T> dummy;//dummy node is used to stop adding and removing issues, dummy never gets removed
 
     /**
      * default constructor, list is empty so initialize n to 0, and then
      * initialize the dummy node.
      */
     public DoublyLinkedListDS() {
-        dummy = new Node();
+        dummy = new Node<>();
         dummy.next = dummy;//make dummys next point to itself
         dummy.prev = dummy;//make dummys previous point to itself
         n = 0;
@@ -57,7 +57,55 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
         
     }
     
+    public T setDataInNodeAt(int position, T newData){
+        
+        Node<T> current = dummy.next;
+        current.data = (T) dummy.next.data;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return current.data;
+    }
     
+    /**
+     * getNode method will return a nodes data at a given position
+     * @param position
+     * @return 
+     */
+    public T get(int position){
+        
+        if(position >= n){
+            throw new NoSuchElementException();
+        }
+        
+        
+        Node<T> current = dummy.next;
+        T returnMe = current.data;
+        
+        for(int i = 1; i < n-1; i++){
+            
+            if(i == position){
+                returnMe = current.data;
+            }
+            current = current.next;
+        }
+        
+        return returnMe;
+    }
+    
+    /**
+     * returns the number of elements in the list 
+     * @return 
+     */
+    public int size(){
+        return n;
+    }
     
     @Override
     public String toString() {
