@@ -33,13 +33,18 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
      */
     public void append(T addMe) {
 
-        Node<T> addBack = new Node<>();//create a new node
-        addBack.data = addMe;//set the data in the new node
-        addBack.prev = dummy.prev;//set the new node's previous to point to dummys previous
-        dummy.prev.next = addBack;//set dummys previous' next to point to the new node
-        dummy.prev = addBack;//then finally, set dummys previous to the new node
-        n++;//increment the number of elements in the list
 
+      Node<T> addBack = new Node<>();
+      addBack.data = addMe;
+      
+      addBack.next = dummy;
+      addBack.prev = dummy.prev;
+      
+      dummy.prev.next = addBack;
+      dummy.prev = addBack;
+      
+      n++;
+      
     }
 
     /**
@@ -134,7 +139,7 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
 
             @Override
             public boolean hasNext() {
-                return current != null;//if current is not null, then there is another node in the list
+                return current != dummy;//if current is not null, then there is another node in the list
             }
 
             @Override
