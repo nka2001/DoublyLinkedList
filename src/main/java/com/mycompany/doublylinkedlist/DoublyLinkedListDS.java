@@ -34,16 +34,16 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
     public void append(T addMe) {
 
 
-      Node<T> addBack = new Node<>();
-      addBack.data = addMe;
+      Node<T> addBack = new Node<>();//create a new node
+      addBack.data = addMe;//set data in node
       
-      addBack.next = dummy;
-      addBack.prev = dummy.prev;
+      addBack.next = dummy;//make the next of this new node point to dummy
+      addBack.prev = dummy.prev;//make the previous point to dummys previous
       
-      dummy.prev.next = addBack;
-      dummy.prev = addBack;
+      dummy.prev.next = addBack;//set dummys previou's next (essentially what was the tail to point to the new node
+      dummy.prev = addBack;//set dummys previous to point to the new node
       
-      n++;
+      n++;//increment the number of elements
       
     }
 
