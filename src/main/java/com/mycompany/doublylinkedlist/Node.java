@@ -8,8 +8,8 @@ package com.mycompany.doublylinkedlist;
 public class Node<T> extends DoublyLinkedList {
     
     T data;
-    Node prev;
-    Node next;
+    Node<T> prev;
+    Node<T> next;
     
     public Node(){
         this.data = (T) "Default";
@@ -23,6 +23,8 @@ public class Node<T> extends DoublyLinkedList {
         this.prev = null;
         
     }
+  
+  
     
     
 }
