@@ -55,13 +55,13 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
 
         Node<T> addFront = new Node<>();//create a new node
         addFront.data = addMe;//set the data in the node
-        
+
         addFront.prev = dummy;//make the new nodes previous point to dummy 
         addFront.next = dummy.next;//make the next pointer of new node point to the old head
-        
+
         dummy.next.prev = addFront;//make the old heads previous point to the new node
         dummy.next = addFront;//make the new head (dummy.next) point to the new node
-        
+
         n++;//increment the number of elements
     }
 
@@ -81,22 +81,22 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
      */
     public T get(int position) {
 
-        if (position >= n) {
-            throw new NoSuchElementException();
+        if (position >= n) {//if the position asked for is greater than the total size of the list, then
+            throw new NoSuchElementException();//throw an exception
         }
 
-        Node<T> current = dummy.next;
-        T returnMe = current.data;
+        Node<T> current = dummy.next;//create a node to start at the head of the LL
+        T returnMe = current.data;//returnMe is the data at whatever position
 
-        for (int i = 1; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i++) {//loop through the LL, starting at the head
 
-            if (i == position) {
-                returnMe = current.data;
+            if (i == position) {//if i is the position, then 
+                returnMe = current.data;//set the return data
             }
-            current = current.next;
+            current = current.next;//keep moving through the list until the end is reached
         }
 
-        return returnMe;
+        return returnMe;//return the data
     }
 
     /**
@@ -105,7 +105,56 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
      * @return
      */
     public int size() {
-        return n;
+        return n;//return the number of elements in the linked list
+    }
+
+    /**
+     * getNode method, will return the node of the given position, used by
+     * removeAt
+     *
+     * @param position
+     * @return
+     */
+    private Node<T> getNode(int position) {
+
+        Node<T> current = dummy.next;//start at the head
+
+        for (int i = 0; i < position; i++) {//loop through the list until the position is met
+
+            current = current.next;//move the node through
+
+        }
+
+        return current;//return the node
+
+    }
+
+    /**
+     * removeAt will remove the element at a given position
+     * @param position
+     * @return
+     */
+    public T removeAt(int position) {
+
+        T data = dummy.next.data;//data of the node being removed (start at the head)
+
+        if (position >= n) {//if the position given is bigger than the list then
+            throw new NoSuchElementException();//throw an exception
+        } else {
+
+            Node<T> removeMe = getNode(position);//get the node being removed
+
+            data = removeMe.data;//set the data to be returned
+
+            removeMe.prev.next = removeMe.next;//pointer placement, make removeMe's previous' next pointer point to the node that comes after the node being removed
+            removeMe.next.prev = removeMe.prev;//pointer placement, make removeMe's next's previous pointer point to the node that comes before the node being removed
+
+            n--;//decrement the number of elements in the list
+
+        }
+
+        return data;//return the data of the node that was removed
+
     }
 
     @Override
