@@ -130,7 +130,87 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
     }
 
     /**
+     * remove method, will look for the removeMe, then remove it, returns true
+     * if the item was removed
+     *
+     * @param removeMe
+     * @return
+     */
+    public boolean remove(T removeMe) {
+
+        Node<T> removeNode = dummy.next; //start at head
+        removeNode.data = dummy.next.data;
+
+        //case 1: LL is empty, do nothing
+        if (removeNode.data.equals("Default")) {//default is dummy's data
+            return false;
+        }
+        //case 2: just call indexOf and removeAt
+
+        int index = indexOf(removeMe);
+
+        if (index > 0) {//if the index returned by indexOf is negative (-1) then return false, it means removeMe isnt in the LL
+            removeAt(index);//otherwise, call removeAt on the index
+            return true;//and return true
+        } else {
+            return false;//false is returned if indexOf returns -1 (meaning removeMe wasnt found)
+        }
+
+    }
+
+    /**
+     * indexOf method will return the first index of an item, otherwise -1
+     *
+     * @param findMe
+     * @return the first index of findMe
+     */
+    public int indexOf(T findMe) {
+
+        Node<T> findIndex = dummy.next; //start at the head of the LL
+        findIndex.data = dummy.next.data;
+
+        int index = -1;//this is returned, -1 if the index is not found
+
+        for (int i = 0; i < n; i++) {//iterate through the linked list
+            if (findMe.equals(findIndex.data)) {//if the data at the current node is the same as findMe, then thats the index
+                index = i;//set the index 
+                return index;//return it
+            }
+            findIndex = findIndex.next;//otherwise, move through the linked list
+        }
+
+        return index;//return the final index
+
+    }
+
+    /**
+     * lastIndexOf method, will start at the tail of the linked list, and
+     * iterate until findMe is found
+     *
+     * @param findMe
+     * @return
+     */
+    public int lastIndexOf(T findMe) {
+
+        Node<T> findLast = dummy.prev;//start at the tail of the linked list
+        findLast.data = dummy.prev.data;
+
+        int index = -1;//the index is what is returned, -1 if findMe is not found
+
+        for (int i = n - 1; i > 0; i++) {//iterate through the linked list
+            if (findMe.equals(findLast.data)) {//if the current nodes data equals findMe then
+                index = i;//set its index
+                return index;//and return it 
+            }
+            findLast = findLast.prev;//otherwise keep moving through the linked list
+        }
+        return index;//finally, return the index
+
+    }
+
+    /**
      * removeAt will remove the element at a given position
+     *
      * @param position
      * @return
      */
