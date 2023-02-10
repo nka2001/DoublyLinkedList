@@ -65,12 +65,52 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
         n++;//increment the number of elements
     }
 
+    /**
+     * setDataInNodeAt will set the data to something new at a given node 
+     * @param position
+     * @param newData
+     * @return 
+     */
     public T setDataInNodeAt(int position, T newData) {
 
-        Node<T> current = dummy.next;
-        current.data = (T) dummy.next.data;
+        Node<T> current = dummy.next;//create a node and set it to the head
+        current.data = (T) dummy.next.data;//set the data
 
-        return current.data;
+        T oldData = getItemAt(position);//get the old data from the given position
+        
+        for(int i = 0; i <= n - 1; i++){//iterate through the LL
+            if(i == position){//if i is the same as the position
+                current.data = newData;//then set the node's data to the new data
+            }
+            current = current.next;//keep iterating through the LL
+        }
+
+        return current.data;//return the nodes data 
+    }
+
+    /**
+     * getItemAt method will return the data at a given node
+     *
+     * @param position
+     * @return
+     */
+    public T getItemAt(int position) {
+
+        Node<T> current = dummy.next;//create a node and point it to the head
+        current.data = dummy.next.data;//set the data
+
+        T nodeData = current.data;//create a return piece of data
+
+        for (int i = 0; i <= n; i++) {//iterate through the LL
+
+            if (i == position) {//if the current position is i, then 
+                nodeData = current.data;//set the data to be returned
+            }
+            current = current.next;//keep moving through the LL
+        }
+
+        return nodeData;//return the final piece of nodeData
+
     }
 
     /**
