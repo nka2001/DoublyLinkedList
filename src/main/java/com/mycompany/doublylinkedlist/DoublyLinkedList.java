@@ -45,6 +45,8 @@ public class DoublyLinkedList {
         dll.remove("test 5");
         
         System.out.println(dll.toString());
+        
+        System.out.println(dll.contains("test 4"));
 
     }
 }

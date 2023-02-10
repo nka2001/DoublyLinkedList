@@ -114,6 +114,16 @@ public class DoublyLinkedListDS<T extends Comparable<T>> implements Iterable<T> 
     }
 
     /**
+     * contains will return true if findMe is found in the linked list
+     * @param findMe
+     * @return 
+     */
+    public boolean contains(T findMe){
+        return (-1 != indexOf(findMe));
+    }
+    
+    
+    /**
      * getNode method will return a nodes data at a given position
      *
      * @param position
